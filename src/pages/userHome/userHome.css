@@ -1,0 +1,63 @@
+.container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px; /* Adjust as needed */
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .search-box {
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  .cards-container1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Adjust as needed */
+    width: 100%; /* Adjust as needed */
+  }
+  
+  .card1 {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    min-width: 200px;/* Adjust as needed */
+  }
+  
+
+
+
+  .search-box {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-input {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .search-input:focus {
+    border-color: #007bff; /* Change to your preferred focus color */
+  }
+  
+  .search-button {
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3; /* Darker shade of primary color */
+  }
+  

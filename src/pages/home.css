@@ -1,0 +1,40 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .card {
+    flex: 1; /* Equal width for each card */
+    max-width: 250px; /* Maximum width of each card */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 100px; /* Add some margin between cards */
+  }
+  
+  .card h2 {
+    margin-top: 0;
+  }
+  
+  .card p {
+    /* color: #666; */
+  }
+  
+  .card button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    /* background-color: #4caf50; Green */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card button:hover {
+    background-color: rgb(253, 141, 28); /* Darker green on hover */
+  }
+  
