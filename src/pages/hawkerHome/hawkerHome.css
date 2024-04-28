@@ -1,0 +1,185 @@
+/* Navbar */
+.App-home{
+  height: 100%;
+}
+.navbar-home {
+  /* background-color: #FFCB8D; */
+  color: black;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-home .navbar-left-home {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-home .icon {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px; /* Add horizontal space */
+}
+
+.navbar-home .profile-icon-home {
+  position: relative;
+}
+
+.navbar-home .dropdown-content-home {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.navbar-home .profile-icon-home:hover .dropdown-content-home {
+  display: block;
+}
+
+.navbar-home .dropdown-content-home a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar-home .dropdown-content-home a:hover {
+  background-color: #ddd;
+}
+
+/* Main content */
+.main-content-home {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  padding: 20px;
+}
+
+/* Card */
+.card-home {
+  width: 200px;
+  height: 200px;
+  background-color: #9e9898;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.circle-icon-home {
+  width: 200px;
+  height: 200px;
+}
+
+.card-name {
+  width: 250px;
+  padding: 10px;
+  /* background-color: #fff; */
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 20px;
+  transition: transform 0.3s ease;
+  /* border: 3px solid #ccc; */
+}
+
+.card-name:hover {
+  transform: translateY(-5px);
+}
+
+.card-name img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.card-name > div {
+  margin-bottom: 10px;
+}
+
+.card-name .description {
+  max-height: 80px; /* Limit the height of description */
+  overflow: hidden;
+}
+
+/* Form */
+.form-home {
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  margin-left: 20px; /* Add horizontal space */
+  border: 3px solid #ccc;
+}
+
+.form-home label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-home input[type="text"],
+.form-home textarea,
+.form-home select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-home button {
+  width: 100%;
+  padding: 10px;
+  background-color: #FFCB8D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px; /* Add vertical space */
+}
+
+.form-home button:hover {
+  background-color: #FFA500;
+}
+
+
+/* Edit and Delete Buttons */
+.card-name .edit-button,
+.card-name .delete-button {
+  display: inline-block; /* Ensure buttons are inline */
+  padding: 8px 16px; /* Adjust padding as needed */
+  margin-right: 10px; /* Add horizontal spacing between buttons */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-name .edit-button {
+  background-color: #007bff; /* Edit button color */
+  color: white;
+}
+
+.card-name .delete-button {
+  background-color: #dc3545; /* Delete button color */
+  color: white;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 768px) {
+  .card-name {
+    width: calc(50% - 40px);
+  }
+}

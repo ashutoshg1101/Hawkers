@@ -63,6 +63,7 @@ const Otpauth = () => {
           .confirm(otp)
           .then(async (res) => {
               console.log(res);
+              localStorage.setItem('mobile', res.user.phoneNumber);
               setLoading(false);
               Navigator('/home');
           })

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
     "firebase": "^9.15.0",
+    "generate-unique-id": "^2.0.3",
     "leaflet": "^1.9.4",
     "leaflet-routing-machine": "^3.2.12",
     "otp-input-react": "^0.3.0",

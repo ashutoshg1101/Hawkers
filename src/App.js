@@ -6,6 +6,7 @@ import MapComponent from './pages/mapComponent';
 import LoginPage from './pages/loginPage/Login';
 import SignupPage from './pages/signupPage/signupPage';
 import GetRoute from './pages/getRoute';
+import HawkerHome from './pages/hawkerHome/hwHome';
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
           <Route path='/home' element={<Home />} />
           <Route path='/mapComponent' element={<MapComponent />} />
           <Route path='/userHome' element={<UserHome />} />
+          <Route path='/hawkerHome' element={<HawkerHome />} />
           <Route path='/loginPage' element={<LoginPage />} />
           <Route path='/signupPage' element={<SignupPage />} />
           <Route path='/getRoute' element={<GetRoute />} />

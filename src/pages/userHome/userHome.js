@@ -4,13 +4,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const img = {
-  img1:  require("../../images/khamand.webp"),
-  img2:  require("../../images/idli.jpg"),
-  img3:  require("../../images/Dosa.webp"),
-  img4:  require("../../images/meduwada.jpeg"),
-  img5:  require("../../images/choleBhature.jpeg"),
-  img6:  require("../../images/dhokla.webp"),
-  img7:  require("../../images/burger.jpeg")
+  khamand:  require("../../images/khamand.webp"),
+  idli:  require("../../images/idli.jpg"),
+  Dosa:  require("../../images/Dosa.webp"),
+  meduwada:  require("../../images/meduwada.jpeg"),
+  choleBhature:  require("../../images/choleBhature.jpeg"),
+  dhokla:  require("../../images/dhokla.webp"),
+  burger:  require("../../images/burger.jpeg")
 }
 
 const getImageObject = (imageName) => {
@@ -45,7 +45,7 @@ function App() {
   const initialfetchApi = async () =>{
     try{
         const res = await axios({
-          url: 'http://localhost:8000/shop',
+          url: 'http://localhost:8000/items',
           method: 'get',
           headers:{
             "content-type":"application/json"
@@ -70,8 +70,8 @@ function App() {
 
   const Navigator = useNavigate();
 
-  function getLocation(location){
-    Navigator(`/getRoute?lat=${location[0]}&lng=${location[1]}`);
+  function getLocation(lat,lng){
+    Navigator(`/getRoute?lat=${lat}&lng=${lng}`);
   }
 
   return (
@@ -92,8 +92,12 @@ function App() {
           <div key={card._id} className="card1 bg-orange-400">
             <img src={getImageObject(card.image)} width={200} height={200} />
             <h2 className="text-white font-bold">{card.title}</h2>
-            <p className="text-white font-medium">{card.content}</p>
-            <button className='search-button bg-orange-500' onClick={() => getLocation(card.location)}>Get Location</button>
+            
+            <p className="text-white font-medium"><strong>about : </strong>{card.content}</p>
+            <p className="text-white font-medium"><strong>open : </strong>{card.openingTime}</p>
+            <p className="text-white font-medium"><strong>close : </strong>{card.closingTime}</p>
+
+            <button className='search-button bg-orange-500' onClick={() => getLocation(card.latCoordinate,card.lngCoordinate)}>Get Location</button>
           </div>
         ))}
       </div>
