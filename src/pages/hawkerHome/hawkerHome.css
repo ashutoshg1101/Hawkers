@@ -1,5 +1,4 @@
-/* Navbar */
-.App-home{
+.containerHawkerHome{
   height: 100%;
 }
 .navbar-home {
@@ -56,9 +55,11 @@
 /* Main content */
 .main-content-home {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   /* justify-content: center; */
   padding: 20px;
+  /* height: 100vh; */
 }
 
 /* Card */
@@ -175,6 +176,13 @@
 .card-name .delete-button {
   background-color: #dc3545; /* Delete button color */
   color: white;
+}
+
+.profile-icon-home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 /* Responsive styles */

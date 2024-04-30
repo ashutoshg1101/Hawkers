@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, useMap , Popup } from 'react-leaflet';
 import { useLocation } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
@@ -37,8 +37,8 @@ function MapComponent({ center, destination }) {
 
   return (
     <div>
-      <Marker icon={markerIconUser} position={center}></Marker>
-      <Marker icon={markerIconHawker} position={destination}></Marker>
+      <Marker icon={markerIconUser} position={center}><Popup>User Location</Popup></Marker>
+      <Marker icon={markerIconHawker} position={destination}><Popup>Hawker Location</Popup></Marker>
       <RoutingMachine map={map} source={center} destination={destination} />
     </div>
   );

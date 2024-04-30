@@ -7,6 +7,12 @@ import I2 from "../../images/Logo.png";
 import khamand from "../../images/Khamand.jpeg";
 import idli from "../../images/idli.jpg";
 import Dosa from "../../images/Dosa.webp";
+import meduwada from "../../images/meduwada.jpeg"
+import choleBhature from "../../images/choleBhature.jpeg"
+import dhokla from "../../images/dhokla.webp"
+import burger from  "../../images/burger.jpeg"
+import pizza from "../../images/pizza.jpg"
+
 import axios from 'axios';
 import generateUniqueId from 'generate-unique-id';
 // Define imageOptions outside of the components
@@ -14,6 +20,11 @@ const imageOptions = [
   { value: "khamand", url: khamand },
   { value: "idli", url: idli },
   { value: "Dosa", url: Dosa},
+  { value: "meduwada" , url: meduwada},
+  { value: "choleBhature" , url: choleBhature},
+  { value: "dhokla" , url: dhokla},
+  { value: "burger" , url: burger},
+  { value: "pizza" , url: pizza},
 ];
 
 const img = {
@@ -251,7 +262,7 @@ function App() {
   }
 
   return (
-    <div className="bg-orange-300 App-home">
+    <div className="containerHawkerHome bg-orange-300">
       {/* Navbar */}
       <nav className="bg-orange-400 navbar-home">
         <div className="navbar-left-home">
@@ -261,7 +272,7 @@ function App() {
         <div className="navbar-right-home">
           <div className="profile-icon-home">
             <img src={I3} alt="Profile Icon" className="icon" />
-            {userName}
+            {localStorage.getItem('email')}
             <div className="dropdown-content-home">
               <a href="#">Profile</a>
               <a href="#">Logout</a>
@@ -270,7 +281,7 @@ function App() {
         </div>
       </nav>
 
-      <main className="main-content-home">
+      <div className="main-content-home">
         <div className="card-home" onClick={() => setShowForm(true)}>
           <img src={I1} alt="Add Dish Icon" className="circle-icon-home"/>
         </div>
@@ -299,7 +310,7 @@ function App() {
             <button onClick={() => handleDelete(index,dish.dishId)} className="delete-button">Delete</button>
           </div>
         ))}
-      </main>
+      </div>
     </div>
   );
 }

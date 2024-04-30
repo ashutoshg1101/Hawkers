@@ -1,68 +1,54 @@
-import React, { useState , useEffect } from 'react';
-import './userHome.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./userHome.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const img = {
-  khamand:  require("../../images/khamand.webp"),
-  idli:  require("../../images/idli.jpg"),
-  Dosa:  require("../../images/Dosa.webp"),
-  meduwada:  require("../../images/meduwada.jpeg"),
-  choleBhature:  require("../../images/choleBhature.jpeg"),
-  dhokla:  require("../../images/dhokla.webp"),
-  burger:  require("../../images/burger.jpeg")
-}
+  khamand: require("../../images/khamand.webp"),
+  idli: require("../../images/idli.jpg"),
+  Dosa: require("../../images/Dosa.webp"),
+  meduwada: require("../../images/meduwada.jpeg"),
+  choleBhature: require("../../images/choleBhature.jpeg"),
+  dhokla: require("../../images/dhokla.webp"),
+  burger: require("../../images/burger.jpeg"),
+  pizza: require("../../images/pizza.jpg")
+};
 
 const getImageObject = (imageName) => {
   return img[imageName];
 };
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [cards, setCards] = useState([
-    { id: 1, title: 'Khammand',image: "img1", content: 'Gujrati Food Stall',location: [30.7309052,76.6947408] },
-    { id: 2, title: 'Idli',image: "img2", content: 'Tasty Idli Stall',location: [21.1594402,72.6571395] },
-    { id: 3, title: 'Dosa',image: "img3", content: 'Dosa Cravings Food Stall',location: [34.1068923,74.6416003] },
-    { id: 4, title: 'Meduwada',image: "img4", content: 'South Indian Food Stall',location: [29.195319,76.8826396] },
-    { id: 5, title: 'Chole Bhature',image: "img5", content: 'Amritsari Food Stall',location: [28.99105,77.03635] },
-    { id: 6, title: 'Dhokla',image: "img6", content: 'Dhokla Food stall',location: [30.7309052,76.6947408] },
-    { id: 13, title: 'Burger',image: "img7", content: 'Md Burger',location: [30.7309052,76.6947408] },
-    { id: 7, title: 'Khammand',image: "img1", content: 'Jignesh Food Stall',location: [30.7309052,76.6947408] },
-    { id: 8, title: 'Idli',image: "img2", content: 'South Indian Food Stall',location: [30.7309052,76.6947408] },
-    { id: 9, title: 'Dosa',image: "img3", content: 'Yummy Dosa Food Stall',location: [30.7309052,76.6947408] },
-    { id: 10, title: 'Meduwada',image: "img4", content: 'Tasty Food Stall',location: [30.7309052,76.6947408]},
-    { id: 11, title: 'Chole Bhature',image: "img5", content: 'Punjabi Dhaba',location: [30.7309052,76.6947408] },
-    { id: 12, title: 'Dhokla',image: "img6", content: 'Gujrati Farshan',location: [30.7309052,76.6947408] },
-  ]);
-
-  
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState("");
+  const [cards, setCards] = useState([]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
+  const initialfetchApi = async () => {
+    try {
+      const res = await axios({
+        url: "http://localhost:8000/items",
+        method: "get",
+        headers: {
+          "content-type": "application/json",
+        },
+      });
 
-  const initialfetchApi = async () =>{
-    try{
-        const res = await axios({
-          url: 'http://localhost:8000/items',
-          method: 'get',
-          headers:{
-            "content-type":"application/json"
-          },
-        })
-
-        console.log(res);
-        setCards(res.data);
-    }catch(err){
-      console.log(err)
+      console.log(res);
+      setCards(res.data);
+    } catch (err) {
+      console.log(err);
     }
-  } 
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     initialfetchApi();
     //initial scren load
-  },[])   
+  }, []);
 
   const filteredCards = cards.filter((card) =>
     card.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -70,12 +56,96 @@ function App() {
 
   const Navigator = useNavigate();
 
-  function getLocation(lat,lng){
+  function getLocation(lat, lng) {
     Navigator(`/getRoute?lat=${lat}&lng=${lng}`);
   }
 
+  const handleCardClick = (createdBy) => {
+    setShowModal(true);
+    (async () => {
+      try {
+        const res = await axios({
+          url: "http://localhost:8000/hawker/detailbyID",
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          data: {
+            createdBy: createdBy,
+          },
+        });
+
+        setModalData(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  };
   return (
     <div className="container1 bg-orange-300">
+      {showModal ? (
+        <div className="fixed top-0 left-0 w-full h-screen z-50 flex justify-center items-center">
+          <div className="fixed top-0 left-0 w-full h-screen bg-black opacity-70"></div>
+          <div className="w-[450px] h-[350px] z-50">
+            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              {/*header*/}
+              <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                <h3 className="text-3xl font-semibold">{modalData.shopName}</h3>
+                <button
+                  className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                  onClick={() => setShowModal(false)}
+                >
+                  <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                    ×
+                  </span>
+                </button>
+              </div>
+              {/*body*/}
+              <div className="relative p-6 flex-auto">
+                <h1 className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                  Contact : {modalData.mobile}
+                </h1>
+                <h1 className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                  email : {modalData.email}
+                </h1>
+                <h1 className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                  Address : {modalData.address}
+                </h1>
+                <h1 className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                  Opening Time :{" "}
+                  {parseInt(modalData.openingTime) > 12
+                    ? `${parseInt(modalData.openingTime) - 12} PM`
+                    : `${modalData.openingTime} AM`}
+                </h1>{" "}
+                <h1 className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                  Closing Time :{" "}
+                  {parseInt(modalData.closingTime) > 12
+                    ? `${parseInt(modalData.closingTime) - 12} PM`
+                    : `${modalData.closingTime} AM`}
+                </h1>
+              </div>
+              {/*footer*/}
+              <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                <button
+                  className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={() => setShowModal(false)}
+                >
+                  Close
+                </button>
+                <button
+                  className="bg-orange-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={() => getLocation(modalData.latCoordinate, modalData.lngCoordinate)}
+                >
+                  Get Location
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <div className="search-box">
         <input
           type="text"
@@ -89,15 +159,30 @@ function App() {
 
       <div className="cards-container1 bg-orange-300">
         {filteredCards.map((card) => (
-          <div key={card._id} className="card1 bg-orange-400">
-            <img src={getImageObject(card.image)} width={200} height={200} />
-            <h2 className="text-white font-bold">{card.title}</h2>
-            
-            <p className="text-white font-medium"><strong>about : </strong>{card.content}</p>
-            <p className="text-white font-medium"><strong>open : </strong>{card.openingTime}</p>
-            <p className="text-white font-medium"><strong>close : </strong>{card.closingTime}</p>
+          <div
+            onClick={() => {
+              handleCardClick(card.createdBy);
+            }}
+          >
+            <div key={card._id} className="card1 bg-orange-400">
+              <img src={getImageObject(card.image)} width={200} height={200} />
+              <h2 className="text-white font-bold">{card.title}</h2>
+              <h2 className="text-white font-bold">Price : {card.price}</h2>
+              <p className="text-white font-medium">
+                <strong>Description : </strong>
+                {card.content}
+              </p>
+              
 
-            <button className='search-button bg-orange-500' onClick={() => getLocation(card.latCoordinate,card.lngCoordinate)}>Get Location</button>
+              <button
+                className="search-button bg-orange-500"
+                onClick={() =>
+                  getLocation(card.latCoordinate, card.lngCoordinate)
+                }
+              >
+                Get Location
+              </button>
+            </div>
           </div>
         ))}
       </div>
