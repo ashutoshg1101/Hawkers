@@ -31,7 +31,7 @@ function App() {
   const initialfetchApi = async () => {
     try {
       const res = await axios({
-        url: "http://localhost:8000/items",
+        url: "https://hawker-backend.onrender.com/items",
         method: "get",
         headers: {
           "content-type": "application/json",
@@ -65,7 +65,7 @@ function App() {
     (async () => {
       try {
         const res = await axios({
-          url: "http://localhost:8000/hawker/detailbyID",
+          url: "https://hawker-backend.onrender.com/hawker/detailbyID",
           method: "post",
           headers: {
             "content-type": "application/json",

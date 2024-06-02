@@ -83,7 +83,7 @@ function App() {
   const initialfetchApi = async () =>{
     try{
         const res = await axios({
-          url: 'http://localhost:8000/hawker/detail',
+          url: 'https://hawker-backend.onrender.com/hawker/detail',
           method: 'post',
           headers:{
             "content-type":"application/json"
@@ -105,7 +105,7 @@ function App() {
   const getItemsAPI = async ()=>{
     try{
       const resItems = await axios({
-        url: 'http://localhost:8000/items/byhawker',
+        url: 'https://hawker-backend.onrender.com/items/byhawker',
         method: 'post',
         headers:{
           "content-type":"application/json"
@@ -150,7 +150,7 @@ function App() {
       const updateItemAPIRequest = async () =>{
         try{
             const res = await axios({
-              url: 'http://localhost:8000/items/update',
+              url: 'https://hawker-backend.onrender.com/items/update',
               method: 'post',
               headers:{
                 "content-type":"application/json"
@@ -188,7 +188,7 @@ function App() {
       const createItemAPIRequest = async () =>{
         try{
             const res = await axios({
-              url: 'http://localhost:8000/items/create',
+              url: 'https://hawker-backend.onrender.com/items/create',
               method: 'post',
               headers:{
                 "content-type":"application/json"
@@ -237,7 +237,7 @@ function App() {
     const itemDeleteAPI = async () =>{
       try{
           const res = await axios({
-            url: 'http://localhost:8000/items/delete',
+            url: 'https://hawker-backend.onrender.com/items/delete',
             method: 'post',
             headers:{
               "content-type":"application/json"
