@@ -120,7 +120,7 @@ const SignUp = () => {
     const initialfetchApi = async () =>{
       try{
           const res = await axios({
-            url: 'https://hawker-backend.onrender.com/hawker/signup',
+            url: 'http://localhost:8000/hawker/signup',
             method: 'post',
             headers:{
               "content-type":"application/json"

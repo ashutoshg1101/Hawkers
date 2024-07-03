@@ -24,7 +24,7 @@ const Login = () => {
     const initialfetchApi = async () =>{
       try{
           const res = await axios({
-            url: 'https://hawker-backend.onrender.com/hawker/login',
+            url: 'http://localhost:8000/hawker/login',
             method: 'post',
             headers:{
               "content-type":"application/json"
